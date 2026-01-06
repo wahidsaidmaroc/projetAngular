@@ -70,8 +70,10 @@ jobs:
         working-directory: snifly
         run: npm run build
 
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v3
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
         with:
-          app-name: 'demoangular'
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          azure_static_web_apps_api_token: a8d733d1e5df27bc7d1af156566576b1419a69675681682e299ac7bd444fe38d04-2bcb710c-651a-401e-98c1-e63283d6af6201e0732054219e1e
+          action: "upload"
+          app_location: "snifly/dist"
+          output_location: ""
