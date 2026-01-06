@@ -1,5 +1,8 @@
 name: CI Mon Projet Angular
 
+env:
+  NODE_VERSION: '22'
+
 on:
   push:
     branches: [ "main"]
@@ -21,7 +24,7 @@ jobs:
       - name:  Installer Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{env.NODE_VERSION}}
 
       - name: Install dependencies
         working-directory: snifly        
@@ -39,12 +42,37 @@ jobs:
       - name: Installer Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{env.NODE_VERSION}}
 
       - name: Install dependencies
         working-directory: snifly        
         run: npm install
 
-      - name: Run tests
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déploiement
+        run: echo "Salam 3laiakom Siiiir Deplyer fi serveur "
+
+      - uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{env.NODE_VERSION}}
+
+      - name: Install dependencies
+        working-directory: snifly        
+        run: npm install
+
+      - name: Build Angular application
         working-directory: snifly
-        run: npm test -- --watch=false --browsers=ChromeHeadlessCI
+        run: npm run build
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'demoangular'
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: './snifly/dist'
