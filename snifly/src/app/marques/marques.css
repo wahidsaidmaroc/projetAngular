@@ -1,0 +1,27 @@
+.container {
+  width: 400px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.marque-list {
+  list-style: none;
+  padding: 0;
+}
+
+.marque-list li {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.active {
+  color: green;
+  font-weight: bold;
+}
+
+.inactive {
+  color: red;
+  font-weight: bold;
+}
