@@ -3,12 +3,9 @@ name: CI Mon Projet Angular
 on:
   push:
     branches: [ "main"]
-  pull_request:
-    branches: [ "main" ]
 
 
 jobs:
-  # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -16,12 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+      
+      - name:  Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular application
+        run: npm run build
