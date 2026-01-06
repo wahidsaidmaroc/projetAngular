@@ -11,14 +11,11 @@ interface stockItem {
 @Component({
     selector: "app-stock",
     templateUrl: "./stock.html",
-    styleUrls: ["./stock.scss"],
+    styleUrls: ["./stock.css"],
     imports:[
         NgIf,NgFor
     ]
-
 })
-
-
 
 export class StockComponent {
 
@@ -56,7 +53,4 @@ export class StockComponent {
         },
     ];
 
-    constructor(list: stockItem[]) {
-        this.listStock = list;
-    }
 }
