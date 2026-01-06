@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Product Marques</h2>
+
+  <ul class="marque-list">
+    <li *ngFor="let marque of marques">
+      <strong>{{ marque.name }}</strong><br>
+      ID: {{ marque.id }}<br>
+      Country: {{ marque.country }}<br>
+      Status:
+      <span [class.active]="marque.isActive"
+            [class.inactive]="!marque.isActive">
+        {{ marque.isActive ? 'Active' : 'Inactive' }}
+      </span>
+    </li>
+  </ul>
+</div>
